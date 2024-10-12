@@ -19,16 +19,6 @@ const SignupForm = (props) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault()
-//     try {
-//       props.setUser(formData) // this will modify the state in the App component
-//       navigate('/') // upon redirect you will see the "Dashboard" page
-//     } catch (err) {
-//       updateMessage(err.message)
-//     }
-//   }
-
 const handleSubmit = async (e) => {
     e.preventDefault()
     try {

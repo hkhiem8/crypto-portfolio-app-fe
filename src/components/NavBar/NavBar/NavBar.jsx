@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 const NavBar = ({ user, handleSignout }) => {
   return (
     <>
+    <div className="nav">
       { user ? (
         <nav>
           <ul>
@@ -18,6 +19,7 @@ const NavBar = ({ user, handleSignout }) => {
           </ul>
         </nav>
       )}
+      </div>
     </>
   )
 }
