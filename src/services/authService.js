@@ -14,7 +14,7 @@ const signup = async (formData) => {
     }
 
     if (json.token) {
-        localStorage.setItem('token', json.token); // add this line to store the JWT token in localStorage
+        localStorage.setItem('token', json.token);
     }
     return json;
   } catch (err) {

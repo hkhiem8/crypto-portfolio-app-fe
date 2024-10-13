@@ -1,14 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar/NavBar';
 import Landing from './components/Landing/Landing';
-import Dashboard from './components/Dashboard/Dashboard';
+import CoinList from './components/CoinList/CoinList';
+//import EditWatchlist
+//import IndexWatchlists
+//import ShowWatchlist
 import SignupForm from './components/SignupForm/SignupForm';
 import SigninForm from './components/SigninForm/SigninForm';
 import * as authService from './services/authService';
 
 const App = () => {
-  const [user, setUser] = useState(authService.getUser());;
+  const [user, setUser] = useState(authService.getUser());
+  const [coinData, setCoinData] = useState([]);
+
+  useEffect(() => {
+    setCoinData()
+  })
 
   const handleSignout = () => {
     authService.signout()
@@ -20,7 +28,7 @@ const App = () => {
       <NavBar user={user} handleSignout={handleSignout} />
       <Routes>
         {user ? (
-          <Route path="/" element={<Dashboard user={user} />} />
+          <Route path="/" element={<CoinList user={user} />} />
         ) : (
           <Route path="/" element={<Landing />} />
         )}

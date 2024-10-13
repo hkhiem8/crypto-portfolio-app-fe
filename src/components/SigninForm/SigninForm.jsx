@@ -22,7 +22,7 @@ const SigninForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const user = await authService.signin(formData); // TODO build signin service function
+      const user = await authService.signin(formData);
 
       props.setUser(user);
       navigate('/');

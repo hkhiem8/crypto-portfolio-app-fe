@@ -1,0 +1,1 @@
+//show details of a single watchlist
