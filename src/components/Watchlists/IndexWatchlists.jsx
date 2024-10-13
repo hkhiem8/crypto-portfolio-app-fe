@@ -2,8 +2,13 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { resolveEnvPrefix } from 'vite';
+import * as watchlistService from '../../services/watchlistService'
+// import { resolveEnvPrefix } from 'vite';
 
-const WatchlistPage = () => {
+const WatchlistIndex = () => {
     const [watchlists, setWatchlists] = useState([]);
+
+    useEffect(() => {
+
+    })
 }
