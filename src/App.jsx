@@ -9,17 +9,18 @@ import CoinList from './components/CoinList/CoinList';
 import SignupForm from './components/SignupForm/SignupForm';
 import SigninForm from './components/SigninForm/SigninForm';
 import * as authService from './services/authService';
-import * as getCoinService from '../../services/getCoinService'
+import * as getCoinService from './services/getCoinService'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const [coinData, setCoinData] = useState([]);
+  const [watchlists, setWatchlists] = useState([]);
 
   //Fetch coin data using service function and set coin data state on app load
   useEffect(() => {
     const fetchCoinData = async () => {
       try {
-        const coins = await getCoins();
+        const coins = await getCoinService.getCoins();
         setCoinData(coins)
       } catch (error) {
         console.error(error);
@@ -38,7 +39,11 @@ const App = () => {
       <NavBar user={user} handleSignout={handleSignout} />
       <Routes>
         {user ? (
-          <Route path="/" element={<CoinList user={user} coinData={coinData}/>} />
+          <>
+          <Route path="/" element={<CoinList user={user} coinData={coinData} watchlists={watchlists}/>} />
+          <Route path="/watchlists" element={<IndexWatchlist user={user} watchlists={watchlists}/>} />
+          <Route path="/watchlists/:id" element={<ShowWatchlist user={user} watchlists={watchlists}  />} />
+          </>
         ) : (
           <Route path="/" element={<Landing />} />
         )}

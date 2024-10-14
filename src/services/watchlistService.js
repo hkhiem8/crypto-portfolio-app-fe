@@ -63,4 +63,8 @@ const addCoinToWatchlist = async (watchlistId, coins) => {
     }
   };
 
+  // create a new watchlist
+  // remove coin from watchlist
+  // delete watchlist
+
 export { getWatchlists, addCoinToWatchlist }

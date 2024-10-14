@@ -6,9 +6,10 @@ import * as watchlistService from '../../services/watchlistService'
 // import { resolveEnvPrefix } from 'vite';
 
 const WatchlistIndex = () => {
-    const [watchlists, setWatchlists] = useState([]);
+    
 
     useEffect(() => {
 
     })
 }
+

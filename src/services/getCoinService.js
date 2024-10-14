@@ -13,7 +13,11 @@ const getCoins = async () => {
     if (json.error) {
       throw new Error(json.error);
     }
-    return json;
+    if (json.coins) {
+        return json.coins
+    } else {
+        throw new Error('coin data is missing')
+    }
   } catch (error) {
     console.log(error);
     throw error;
