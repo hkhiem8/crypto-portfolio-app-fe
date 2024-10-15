@@ -10,6 +10,7 @@ import SignupForm from './components/SignupForm/SignupForm';
 import SigninForm from './components/SigninForm/SigninForm';
 import * as authService from './services/authService';
 import * as getCoinService from './services/getCoinService'
+import * as watchlistService from './services/watchlistService'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser());

@@ -30,6 +30,62 @@ const createWatchlist = async (name, description, coins) => {
   }
 }
 
+// Get all watchlists
+const getWatchlists = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      throw new Error("Invalid token or no token found");
+    }
+
+    const res = await fetch(`${BACKEND_URL}/watchlists/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer ${token}",
+      },
+    });
+
+    const json = await res.json();
+
+    if (json.error) {
+      throw new Error(json.error);
+    }
+    return json;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+// Show watchlist by ID
+const getWatchlistDetails = async (watchlistId) => {
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      throw new Error("Invalid token or no token found");
+    }
+
+    const res = await fetch(`${BACKEND_URL}/watchlists/${watchlistId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer ${token}",
+      },
+    });
+
+    const json = await res.json();
+
+    if (json.error) {
+      throw new Error(json.error);
+    }
+    return json;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 // Add coins to the watchlist
 const addCoinToWatchlist = async (watchlistId, coins) => {
   try {
@@ -92,34 +148,6 @@ const removeCoinFromWatchlist = async (watchlistId, coins) => {
   }
 };
 
-// Get all watchlists
-const getWatchlists = async () => {
-  try {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      throw new Error("Invalid token or no token found");
-    }
-
-    const res = await fetch(`${BACKEND_URL}/watchlists/`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer ${token}",
-      },
-    });
-
-    const json = await res.json();
-
-    if (json.error) {
-      throw new Error(json.error);
-    }
-    return json;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
-};
-
 // Delete a watchlist
 const deleteWatchlist = async (watchlistId) => {
     try {
@@ -148,4 +176,4 @@ const deleteWatchlist = async (watchlistId) => {
     }
   };
 
-export { createWatchlist, addCoinToWatchlist, removeCoinFromWatchlist, getWatchlists, deleteWatchlist}
+export { createWatchlist, getWatchlists, getWatchlistDetails, addCoinToWatchlist, removeCoinFromWatchlist,  deleteWatchlist}
