@@ -1,7 +1,7 @@
 const BACKEND_URL = import.meta.env.VITE_EXPRESS_BACKEND_URL;
 
 // Create a new watchlist
-const createWatchlist = async (name, description, coins) => {
+const createWatchlist = async (name, description) => {
   try {
     const token = localStorage.getItem("token");
     //if no token, throw error
@@ -13,9 +13,9 @@ const createWatchlist = async (name, description, coins) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer ${token}",
+        "Authorization": `Bearer ${token}`,
       },
-      body: JSON.stringify({ name, description, coins }), // is this request body code correct?
+      body: JSON.stringify({ name, description }),
     });
 
     const json = await res.json();
@@ -23,6 +23,7 @@ const createWatchlist = async (name, description, coins) => {
     if (!res.ok) {
       throw new Error(json.error);
     }
+
     return json;
   } catch (error) {
     console.log(error);
@@ -42,7 +43,7 @@ const getWatchlists = async () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer ${token}",
+        "Authorization": `Bearer ${token}`,
       },
     });
 
@@ -70,7 +71,7 @@ const getWatchlistDetails = async (watchlistId) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer ${token}",
+        "Authorization": `Bearer ${token}`,
       },
     });
 
@@ -89,6 +90,9 @@ const getWatchlistDetails = async (watchlistId) => {
 // Add coins to the watchlist
 const addCoinToWatchlist = async (watchlistId, coins) => {
   try {
+
+    console.log("Watchlist ID:", watchlistId);
+
     //get token
     const token = localStorage.getItem("token");
     //if no token, throw error
@@ -100,20 +104,22 @@ const addCoinToWatchlist = async (watchlistId, coins) => {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer ${token}",
+        "Authorization": `Bearer ${token}`,
       },
       body: JSON.stringify({ coins }),
     });
 
-    const json = await res.json();
-
+    
     //check for errors in backend
     if (!res.ok) {
       throw new Error(json.error);
     }
+
+    const json = await res.json();
+
     return json;
   } catch (error) {
-    console.log(error);
+    console.error(error.message);
     throw error;
   }
 };
@@ -131,7 +137,7 @@ const removeCoinFromWatchlist = async (watchlistId, coins) => {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer ${token}",
+        "Authorization": `Bearer ${token}`,
       },
       body: JSON.stringify({ coins }),
     });
@@ -160,7 +166,7 @@ const deleteWatchlist = async (watchlistId) => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer ${token}",
+          "Authorization": `Bearer ${token}`,
         },
       });
   

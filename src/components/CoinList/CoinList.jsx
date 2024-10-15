@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CoinCard from "./CoinCard";
 
-const CoinList = ({ user, coinData }) => {
+const CoinList = ({ user, coinData, watchlists }) => {
   const CoinCards = [];
 
   coinData.map((coin) => {
-    CoinCards.push(<CoinCard coin={coin} />);
+    CoinCards.push(<CoinCard key={coin.name} coin={coin} watchlists={watchlists || []} />);
   });
 
   return (
