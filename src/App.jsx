@@ -16,6 +16,7 @@ const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const [coinData, setCoinData] = useState([]);
   const [watchlists, setWatchlists] = useState([]);
+  const [refresh, setRefresh] = useState(false);
 
   //Fetch coin data using service function and set coin data state on app load
   useEffect(() => {
@@ -44,6 +45,12 @@ const App = () => {
     fetchWatchlists();
   }, []);
 
+  // Function to remove a watchlist from the state
+  const removeWatchlist = (id) => {
+    setWatchlists(watchlists.filter(watchlist => watchlist._id !== id));
+  };
+
+  // Handle sign out
   const handleSignout = () => {
     authService.signout()
     setUser(null)
@@ -55,10 +62,31 @@ const App = () => {
       <Routes>
         {user ? (
           <>
-          <Route path="/" element={<CoinList user={user} coinData={coinData} watchlists={watchlists}/>} />
-          <Route path="/watchlists/create" element={<CreateWatchlist user={user} watchlists={watchlists}/>} />
-          <Route path="/watchlists" element={<IndexWatchlists user={user} watchlists={watchlists}/>} />
-          <Route path="/watchlists/:id" element={<ShowWatchlist user={user} watchlists={watchlists}  />} />
+            <Route path="/" element={
+              <CoinList
+                user={user}
+                coinData={coinData}
+                watchlists={watchlists}
+                setRefresh={setRefresh}
+              />} />
+            <Route path="/watchlists/create" element={
+              <CreateWatchlist
+                user={user}
+                watchlists={watchlists}
+              />} />
+            <Route path="/watchlists" element={
+              <IndexWatchlists
+                user={user}
+                watchlists={watchlists}
+              />} />
+            <Route path="/watchlists/:id" element={
+              <ShowWatchlist
+                user={user} coinData={coinData}
+                watchlists={watchlists}
+                removeWatchlist={removeWatchlist}
+                refresh={refresh}
+                setRefresh={setRefresh}
+              />} />
           </>
         ) : (
           <Route path="/" element={<Landing />} />

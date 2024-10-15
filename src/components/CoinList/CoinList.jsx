@@ -1,30 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import CoinCard from "./CoinCard";
 
-const CoinList = ({ user, coinData, watchlists }) => {
+const CoinList = ({ user, coinData, watchlists, setRefresh }) => {
   const CoinCards = [];
 
   coinData.map((coin) => {
-    CoinCards.push(<CoinCard key={coin.name} coin={coin} watchlists={watchlists || []} />);
+    CoinCards.push(
+      <CoinCard
+        key={coin.name}
+        coin={coin}
+        watchlists={watchlists || []}
+        setRefresh={setRefresh}
+      />);
   });
 
   return (
     <main>
       <h1>Welcome, {user.username}</h1>
-      <p>
-        This is the dashboard page where you, and only you, can see a dashboard
-        of all of your things. list of all coin cards add to watch list shortcut
-        button next to coin
-      </p>
+      <h2>Today's Cryptocurrency Prices</h2>
       <div className="coin-list">
         {CoinCards}
-        </div>
+      </div>
     </main>
   );
 };
 
 export default CoinList;
-
-//when app loads, service gets coins, put coin data as a state
-// state: array of coins

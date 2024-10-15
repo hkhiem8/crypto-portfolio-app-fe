@@ -109,13 +109,12 @@ const addCoinToWatchlist = async (watchlistId, coins) => {
       body: JSON.stringify({ coins }),
     });
 
+    const json = await res.json();
     
     //check for errors in backend
     if (!res.ok) {
       throw new Error(json.error);
     }
-
-    const json = await res.json();
 
     return json;
   } catch (error) {
