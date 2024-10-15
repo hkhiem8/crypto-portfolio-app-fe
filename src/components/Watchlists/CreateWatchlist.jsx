@@ -10,15 +10,10 @@ import * as watchlistService from '../../services/watchlistService';
 
 const CreateWatchlist = (props) => {
 const navigate = useNavigate();
-    // const [message, setMessage] = useState('');
     const [formData, setFormData] = useState({
         name: '',
         description: '',
     });
-
-// const updateMessage = (msg) => {
-//     setMessage(msg);
-// };
 
 const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -29,7 +24,7 @@ const handleChange = (e) => {
     try {
         const watchlist = await watchlistService.createWatchlist(formData.name, formData.description);
         console.log("Created Watchlist:", watchlist);
-        
+
         // Navigate to the new watchlist via its ID
         navigate(`/watchlists/${watchlist._id}`);
     } catch(error) {
@@ -42,7 +37,6 @@ const handleChange = (e) => {
   return (
     <main>
       <h1>Create Watchlist</h1>
-      {/* <p>{message}</p> */}
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Watchlist Name:</label>

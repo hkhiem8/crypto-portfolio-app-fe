@@ -4,7 +4,7 @@ import NavBar from './components/NavBar/NavBar/NavBar';
 import Landing from './components/Landing/Landing';
 import CoinList from './components/CoinList/CoinList';
 import CreateWatchlist from './components/Watchlists/CreateWatchlist';
-//import IndexWatchlists
+import IndexWatchlists from './components/Watchlists/IndexWatchlists';
 import ShowWatchlist from './components/Watchlists/ShowWatchlist';
 import SignupForm from './components/SignupForm/SignupForm';
 import SigninForm from './components/SigninForm/SigninForm';
@@ -56,8 +56,8 @@ const App = () => {
         {user ? (
           <>
           <Route path="/" element={<CoinList user={user} coinData={coinData} watchlists={watchlists}/>} />
-          <Route path="/watchlists" element={<CreateWatchlist user={user} watchlists={watchlists}/>} />
-          {/* <Route path="/watchlists" element={<IndexWatchlist user={user} watchlists={watchlists}/>} /> */}
+          <Route path="/watchlists/create" element={<CreateWatchlist user={user} watchlists={watchlists}/>} />
+          <Route path="/watchlists" element={<IndexWatchlists user={user} watchlists={watchlists}/>} />
           <Route path="/watchlists/:id" element={<ShowWatchlist user={user} watchlists={watchlists}  />} />
           </>
         ) : (

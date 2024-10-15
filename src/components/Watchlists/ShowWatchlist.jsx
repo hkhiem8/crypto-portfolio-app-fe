@@ -50,4 +50,7 @@ const ShowWatchlist = () => {
     );
 };
 
+//add conditional render
+//edit button/state opens up coin card add/remove
+
 export default ShowWatchlist;

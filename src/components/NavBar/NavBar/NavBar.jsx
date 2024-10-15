@@ -10,7 +10,8 @@ const NavBar = ({ user, handleSignout }) => {
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="" onClick={handleSignout}>Sign Out</Link></li>
-            <li><Link to="/watchlists">Watchlists</Link></li>
+            <li><Link to="/watchlists/create">Create A Watchlist</Link></li>
+            <li><Link to="/watchlists">My Watchlists</Link></li>
           </ul>
         </nav>
       ) : (

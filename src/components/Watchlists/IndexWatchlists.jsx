@@ -1,15 +1,23 @@
-// displays all the user's watchlists
-
-import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import * as watchlistService from '../../services/watchlistService'
-// import { resolveEnvPrefix } from 'vite';
 
-const WatchlistIndex = () => {
-    
+const IndexWatchlists = ({ watchlists }) => {
 
-    useEffect(() => {
+    return (
+        <div>
+            <h1>Your Watchlists</h1>
+            {watchlists.length > 0 ? (
+                <ul>
+                    {watchlists.map((watchlist) => (
+                        <li key={watchlist._id}>
+                            <Link to={`/watchlists/${watchlist._id}`}>{watchlist.name}</Link>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p>No watchlists found.</p>
+            )}
+        </div>
+    );
+};
 
-    })
-}
-
+export default IndexWatchlists;
