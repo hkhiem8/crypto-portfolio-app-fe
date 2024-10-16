@@ -4,6 +4,8 @@ Coin Port is a full-stack web-based application that allows users to view inform
 
 The goal of this project was to gain a deeper understanding of fullstack development and APIs. I wanted to build something that fetched live cryptocurrency data from an external API, so I used CoinGecko API via Uniblock - a free cryptocurrency API aggregator. I gained experience in API integration, RESTful routing, data parsing, and utilzing API documentation. While building the react frontend, I developed my skills in state management, integrating routes, and conditional rendering.
 
+![image](https://github.com/user-attachments/assets/95e2e6e2-d755-43e8-9f37-8c5fcac7af9b)
+
 ## Features ##
 - User authenticationa and authorization
 - Create, read, edit, and delete watchlists
