@@ -14,14 +14,13 @@ const getCoins = async () => {
       throw new Error(json.error);
     }
     if (json.coins) {
-        return json.coins
+      return json.coins
     } else {
-        throw new Error('coin data is missing')
+      throw new Error('coin data is missing')
     }
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };
 
-export {getCoins}
+export { getCoins }

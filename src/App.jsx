@@ -25,7 +25,6 @@ const App = () => {
         const coins = await getCoinService.getCoins();
         setCoinData(coins)
       } catch (error) {
-        console.error(error);
       }
     }
     fetchCoinData();
@@ -36,10 +35,8 @@ const App = () => {
     const fetchWatchlists = async () => {
       try {
         const userWatchlists = await watchlistService.getWatchlists();
-        console.log(userWatchlists)
         setWatchlists(userWatchlists);
       } catch (error) {
-        console.error(json.error);
       }
     };
     fetchWatchlists();
@@ -98,4 +95,4 @@ const App = () => {
   );
 };
 
-export default App
+export default App;

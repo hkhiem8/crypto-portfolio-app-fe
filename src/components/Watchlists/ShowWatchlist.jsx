@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import * as watchlistService from '../../services/watchlistService';
 import CoinCard from "../CoinList/CoinCard";
+import '../../App.css'
 
 
 const ShowWatchlist = ({ coinData, removeWatchlist, refresh, setRefresh }) => {
@@ -73,10 +74,12 @@ const ShowWatchlist = ({ coinData, removeWatchlist, refresh, setRefresh }) => {
             {coinsInWatchlist.length > 0 ? (
                 <div className="coin-list">
                     {coinsInWatchlist.map((coin) => (
-                        <div key={`${coin._id}`} className="coin-row">
-                            <span>{coin.name} ({coin.symbol})</span>
-                            <span>Price: ${coin.currentPriceUSD}</span>
-                            <span>24h Change: {coin.priceChange24Hrs}%</span>
+                        <div key={`${coin._id}`} className="coin-info-grid">
+                            <img src={coin.image} alt={coin.name} />
+                            <p>{coin.name}</p>
+                            <p>{coin.symbol}</p>
+                            <p>${coin.currentPriceUSD}</p>
+                            <p>{coin.priceChange24Hrs}%</p>
                             {isEditing && <button onClick={() => handleRemoveCoin(coin._id)}>Remove</button>}
                         </div>
                     ))}
@@ -91,6 +94,7 @@ const ShowWatchlist = ({ coinData, removeWatchlist, refresh, setRefresh }) => {
                         Delete Watchlist
                     </button>
 
+                    <h2>Add coins to this watchlist:</h2>
                     {/* Render CoinCard for coins not in the watchlist */}
                     <div className="coin-card-list">
                         {coinsNotInWatchlist.map((coin) => (
@@ -112,6 +116,5 @@ const ShowWatchlist = ({ coinData, removeWatchlist, refresh, setRefresh }) => {
         </div >
     );
 };
-
 
 export default ShowWatchlist;

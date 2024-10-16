@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as authService from '../../services/authService'
+import '../SigninForm/AuthForm.css'
 
 const SignupForm = (props) => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const SignupForm = (props) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       const newUserResponse = await authService.signup(formData)
@@ -37,11 +38,11 @@ const handleSubmit = async (e) => {
   };
 
   return (
-    <main>
+    <main className="modal">
       <h1>Sign Up</h1>
       <p>{message}</p>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-input-divs">
           <label htmlFor="username">Username:</label>
           <input
             type="text"
@@ -51,7 +52,7 @@ const handleSubmit = async (e) => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="form-input-divs">
           <label htmlFor="password">Password:</label>
           <input
             type="password"
@@ -61,7 +62,7 @@ const handleSubmit = async (e) => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="form-input-divs">
           <label htmlFor="confirm">Confirm Password:</label>
           <input
             type="password"
@@ -71,7 +72,7 @@ const handleSubmit = async (e) => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="auth-buttons">
           <button disabled={isFormInvalid()}>Sign Up</button>
           <Link to="/">
             <button>Cancel</button>

@@ -29,10 +29,10 @@ const CreateWatchlist = (props) => {
     const { name, description } = formData
 
     return (
-        <main>
+        <main className="modal">
             <h1>Create Watchlist</h1>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className="form-input-divs">
                     <label htmlFor="name">Watchlist Name:</label>
                     <input
                         type="text"
@@ -43,7 +43,7 @@ const CreateWatchlist = (props) => {
                         required
                     />
                 </div>
-                <div>
+                <div className="form-input-divs">
                     <label htmlFor="description">Description:</label>
                     <input
                         type="text"

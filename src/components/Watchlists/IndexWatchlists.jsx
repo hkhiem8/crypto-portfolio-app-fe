@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const IndexWatchlists = ({ watchlists }) => {
 
     return (
-        <div>
+        <div className="modal">
             <h1>Your Watchlists</h1>
             {watchlists.length > 0 ? (
                 <ul>

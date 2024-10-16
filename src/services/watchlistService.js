@@ -4,7 +4,6 @@ const BACKEND_URL = import.meta.env.VITE_EXPRESS_BACKEND_URL;
 const createWatchlist = async (name, description) => {
   try {
     const token = localStorage.getItem("token");
-    //if no token, throw error
     if (!token) {
       throw new Error("Invalid user");
     }
@@ -26,7 +25,6 @@ const createWatchlist = async (name, description) => {
 
     return json;
   } catch (error) {
-    console.log(error);
     throw error;
   }
 }
@@ -54,7 +52,6 @@ const getWatchlists = async () => {
     }
     return json;
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };
@@ -82,7 +79,6 @@ const getWatchlistDetails = async (watchlistId) => {
     }
     return json;
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };
@@ -90,16 +86,11 @@ const getWatchlistDetails = async (watchlistId) => {
 // Add coins to the watchlist
 const addCoinToWatchlist = async (watchlistId, coins) => {
   try {
-
-    console.log("Watchlist ID:", watchlistId);
-
-    //get token
     const token = localStorage.getItem("token");
-    //if no token, throw error
     if (!token) {
       throw new Error("Invalid user");
     }
-    //patch request to add coins to the watchlist
+
     const res = await fetch(`${BACKEND_URL}/watchlists/${watchlistId}/add-coin`, {
       method: "PATCH",
       headers: {
@@ -110,15 +101,13 @@ const addCoinToWatchlist = async (watchlistId, coins) => {
     });
 
     const json = await res.json();
-    
-    //check for errors in backend
+
     if (!res.ok) {
       throw new Error(json.error);
     }
 
     return json;
   } catch (error) {
-    console.error(error.message);
     throw error;
   }
 };
@@ -148,37 +137,35 @@ const removeCoinFromWatchlist = async (watchlistId, coins) => {
     }
     return json;
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };
 
 // Delete a watchlist
 const deleteWatchlist = async (watchlistId) => {
-    try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        throw new Error("Invalid token or no token found");
-      }
-  
-      const res = await fetch(`${BACKEND_URL}/watchlists/${watchlistId}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
-        },
-      });
-  
-      const json = await res.json();
-  
-      if (json.error) {
-        throw new Error(json.error);
-      }
-      return json;
-    } catch (error) {
-      console.log(error);
-      throw error;
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      throw new Error("Invalid token or no token found");
     }
-  };
 
-export { createWatchlist, getWatchlists, getWatchlistDetails, addCoinToWatchlist, removeCoinFromWatchlist,  deleteWatchlist}
+    const res = await fetch(`${BACKEND_URL}/watchlists/${watchlistId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+    });
+
+    const json = await res.json();
+
+    if (json.error) {
+      throw new Error(json.error);
+    }
+    return json;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export { createWatchlist, getWatchlists, getWatchlistDetails, addCoinToWatchlist, removeCoinFromWatchlist, deleteWatchlist }
